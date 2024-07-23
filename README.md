@@ -32,8 +32,11 @@ Interpret and label each cluster based on its dominant features (e.g., High-Valu
 
 ## Features
 Robust Clustering Techniques: Utilize multiple clustering algorithms to ensure comprehensive customer segmentation.
-Interactive Visualizations: Generate plots such as scatter plots, bar charts, and dendrograms to visualize clusters and their characteristics.
+Interactive Visualizations: Generate dendrograms to visualize clusters and their characteristics.
 Segment Profiling: Profile each customer segment to provide detailed insights into their behaviors and preferences.
+
+<img width="736" alt="image" src="https://github.com/user-attachments/assets/a051cd7e-9250-48be-8f46-a6b14f8a8b87">
+
 
 ## Usage
 This script is particularly useful for data analysts and marketers in the E-commerce sector who are looking to understand their customer base better and enhance targeted marketing efforts.
