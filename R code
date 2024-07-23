@@ -1,0 +1,79 @@
+# Load necessary packages
+install.packages("readxl")
+install.packages("tidyverse")
+install.packages("gt")
+install.packages("cluster")
+
+# Load packages
+library(readxl)
+library(tidyverse)
+library(gt)
+library(cluster)
+
+# Import data from the CSV file
+imported <- read.csv(file.choose())
+
+# Explore data set
+names(imported)
+summary(imported)
+
+# Replace NA values in "Income" with 0
+imported$Income[is.na(imported$Income)] <- 0
+
+# Remove ID and any non-numeric columns
+df <- imported %>% select(-ID) %>% select_if(is.numeric)
+names(df)
+
+## Segmentation step
+# Standardize values
+dfz <- scale(df)
+
+## Ward Hierarchical Clustering
+# Calculate distance matrix with Euclidean distance
+dis <- dist(dfz, method = "euclidean")
+
+# Clustering algorithm
+fit <- hclust(dis, method="ward.D2")
+
+# Display dendrogram
+plot(fit)
+
+# Cut dendrogram into 4 clusters
+cluster <- cutree(fit, k=3)
+
+# Explore clusters
+cluster
+table(cluster)
+
+# Draw dendrogram with red borders around the 4 clusters
+rect.hclust(fit, k=3, border="red")
+
+# Add cluster to original data set
+df_final <- cbind(df, cluster)
+names(df_final)
+View(df_final)
+
+## Description step
+# Calculate segment size in percentages
+proportions <- table(df_final$cluster) / length(df_final$cluster)
+percentages <- proportions * 100
+percentages
+
+# Explore mean values of variables in clusters
+segments <- df_final %>%
+  group_by(cluster) %>%
+  summarise(across(everything(), list(M = mean), .names = "mean_{.col}"))
+
+segments
+# Merge segment sizes with the mean values
+segments <- segments %>%
+  left_join(segment_sizes, by = "cluster")
+
+# Create simple table with mean values
+segments %>%
+  gt() %>%
+  tab_header(
+    title = md("Mean Values for Clusters")
+  )
+
+write.csv(segments, "segmented_customers.csv", row.names = FALSE)
