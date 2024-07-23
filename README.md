@@ -31,9 +31,12 @@ Analyze the characteristics of each cluster to identify key differentiators and 
 Interpret and label each cluster based on its dominant features (e.g., High-Value Customers, Frequent Shoppers).
 
 ## Features
-Robust Clustering Techniques: Utilize multiple clustering algorithms to ensure comprehensive customer segmentation.
-Interactive Visualizations: Generate dendrograms to visualize clusters and their characteristics.
-Segment Profiling: Profile each customer segment to provide detailed insights into their behaviors and preferences.
+1.Robust Clustering Techniques: Utilize multiple clustering algorithms to ensure comprehensive customer segmentation.
+
+2.Interactive Visualizations: Generate dendrograms to visualize clusters and their characteristics.
+
+3.Segment Profiling: Profile each customer segment to provide detailed insights into their behaviors and preferences.
+
 
 <img width="736" alt="image" src="https://github.com/user-attachments/assets/a051cd7e-9250-48be-8f46-a6b14f8a8b87">
 
